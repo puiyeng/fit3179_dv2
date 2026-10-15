@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/grid_richness_by_state.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "state",
+      "type": "nominal",
+      "sort": [
+        "ACT",
+        "NSW",
+        "NT",
+        "QLD",
+        "SA",
+        "TAS",
+        "VIC",
+        "WA"
+      ],
+      "axis": {
+        "title": "State or territory",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "expected_species_per_500",
+      "type": "quantitative",
+      "axis": {
+        "title": "Expected species in 500 records"
+      },
+      "scale": {
+        "zero": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        }
+      ],
+      "mark": {
+        "type": "boxplot",
+        "extent": "min-max",
+        "size": 42,
+        "color": "#9472b0",
+        "opacity": 0.8,
+        "median": {
+          "color": "#38254c"
+        },
+        "rule": {
+          "color": "#6e557e",
+          "strokeWidth": 1.5
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "orient": "horizontal",
+        "size": 26,
+        "thickness": 2,
+        "color": "#4b365d",
+        "xOffset": 0
+      },
+      "encoding": {
+        "y": {
+          "aggregate": "min",
+          "field": "expected_species_per_500",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "orient": "horizontal",
+        "size": 26,
+        "thickness": 2,
+        "color": "#4b365d",
+        "xOffset": 0
+      },
+      "encoding": {
+        "y": {
+          "aggregate": "max",
+          "field": "expected_species_per_500",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "color": "#574073",
+        "size": 28,
+        "opacity": 0.43
+      },
+      "encoding": {
+        "xOffset": {
+          "field": "jitter",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              0.5
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "cell",
+            "type": "nominal",
+            "title": "1° grid cell"
+          },
+          {
+            "field": "expected_species_per_500",
+            "type": "quantitative",
+            "title": "Expected species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "raw_species_richness",
+            "type": "quantitative",
+            "title": "Species in all cell records",
+            "format": ","
+          },
+          {
+            "field": "observation_records",
+            "type": "quantitative",
+            "title": "Cell observation records",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "DM Sans",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

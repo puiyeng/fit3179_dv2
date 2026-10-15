@@ -1,0 +1,9 @@
+state,mean_richness_100k,p05_richness_100k,p95_richness_100k,total_records,raw_recorded_richness
+Australian Capital Territory,227.7,224.0,231.0,205042,235
+New South Wales,442.8,437.0,449.0,1355637,481
+Northern Territory,340.3,336.0,344.0,181069,348
+Queensland,529.3,523.0,535.0,1468711,565
+South Australia,347.9,345.9,351.0,182382,352
+Tasmania,227.7,225.0,230.0,201799,233
+Victoria,373.1,368.0,379.0,1296640,403
+Western Australia,431.1,426.0,436.0,352663,448

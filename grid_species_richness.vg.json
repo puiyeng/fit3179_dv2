@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceee8",
+        "stroke": "#9ba99d",
+        "strokeWidth": 0.7
+      }
+    },
+    {
+      "data": {
+        "url": "data/grid_richness_1deg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "grid"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#f7f7f2",
+        "strokeWidth": 0.35
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.expected_species_per_500",
+          "type": "quantitative",
+          "title": "Expected species in 500 records",
+          "scale": {
+            "domain": [
+              0,
+              75,
+              150
+            ],
+            "range": [
+              "#f4e9b9",
+              "#a6cf9c",
+              "#25684d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 240,
+            "titleLimit": 300
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.cell",
+            "type": "nominal",
+            "title": "1° cell (longitude, latitude)"
+          },
+          {
+            "field": "properties.expected_species_per_500",
+            "type": "quantitative",
+            "title": "Expected species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "properties.raw_species_richness",
+            "type": "quantitative",
+            "title": "Species in all cell records",
+            "format": ","
+          },
+          {
+            "field": "properties.observation_records",
+            "type": "quantitative",
+            "title": "Cell observation records",
+            "format": ","
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.observation_records >= Min_cell_records"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "params": [
+    {
+      "name": "Min_cell_records",
+      "value": 500,
+      "bind": {
+        "input": "range",
+        "min": 500,
+        "max": 10000,
+        "step": 500,
+        "name": "Minimum cell records: "
+      }
+    }
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

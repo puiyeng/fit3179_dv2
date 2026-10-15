@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 320,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "data/state_richness_100k.csv"
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/states.topojson",
+          "format": {
+            "type": "topojson",
+            "feature": "states"
+          }
+        },
+        "key": "properties.STE_NAME26"
+      },
+      "as": "geo"
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "mean_richness_100k",
+          "type": "quantitative",
+          "title": "Species per 100k records",
+          "scale": {
+            "domain": [
+              220,
+              380,
+              540
+            ],
+            "range": [
+              "#f4e9b9",
+              "#a6cf9c",
+              "#25684d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 190,
+            "title": "Species per 100,000 records",
+            "labelFontSize": 12
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "mean_richness_100k",
+            "type": "quantitative",
+            "title": "Mean species in 100k records",
+            "format": ".1f"
+          },
+          {
+            "field": "p05_richness_100k",
+            "type": "quantitative",
+            "title": "5th percentile",
+            "format": ".1f"
+          },
+          {
+            "field": "p95_richness_100k",
+            "type": "quantitative",
+            "title": "95th percentile",
+            "format": ".1f"
+          },
+          {
+            "field": "total_records",
+            "type": "quantitative",
+            "title": "All state records",
+            "format": ","
+          },
+          {
+            "field": "raw_recorded_richness",
+            "type": "quantitative",
+            "title": "Species in all records",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state == 'Queensland'"
+        },
+        {
+          "calculate": "'QLD ≈ ' + format(datum.mean_richness_100k, '.0f')",
+          "as": "richness_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "white"
+      },
+      "encoding": {
+        "longitude": {
+          "datum": 144
+        },
+        "latitude": {
+          "datum": -22
+        },
+        "text": {
+          "field": "richness_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    }
+  ]
+}

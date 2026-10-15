@@ -1,0 +1,208 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 370,
+  "data": {
+    "values": [
+      {
+        "state": "Australian Capital Territory",
+        "abbr": "ACT",
+        "total_records": 205042,
+        "raw_recorded_richness": 235,
+        "label_y": 260
+      },
+      {
+        "state": "New South Wales",
+        "abbr": "NSW",
+        "total_records": 1355637,
+        "raw_recorded_richness": 481,
+        "label_y": 502
+      },
+      {
+        "state": "Northern Territory",
+        "abbr": "NT",
+        "total_records": 181069,
+        "raw_recorded_richness": 348,
+        "label_y": 375
+      },
+      {
+        "state": "Queensland",
+        "abbr": "QLD",
+        "total_records": 1468711,
+        "raw_recorded_richness": 565,
+        "label_y": 584
+      },
+      {
+        "state": "South Australia",
+        "abbr": "SA",
+        "total_records": 182382,
+        "raw_recorded_richness": 352,
+        "label_y": 320
+      },
+      {
+        "state": "Tasmania",
+        "abbr": "TAS",
+        "total_records": 201799,
+        "raw_recorded_richness": 233,
+        "label_y": 205
+      },
+      {
+        "state": "Victoria",
+        "abbr": "VIC",
+        "total_records": 1296640,
+        "raw_recorded_richness": 403,
+        "label_y": 423
+      },
+      {
+        "state": "Western Australia",
+        "abbr": "WA",
+        "total_records": 352663,
+        "raw_recorded_richness": 448,
+        "label_y": 468
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "total_records",
+      "type": "quantitative",
+      "title": "Observation records",
+      "scale": {
+        "domain": [
+          0,
+          1600000
+        ]
+      },
+      "axis": {
+        "format": "~s"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "size": 180,
+        "color": "#2876ae",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "total_records",
+            "type": "quantitative",
+            "title": "Observation records",
+            "format": ","
+          },
+          {
+            "field": "raw_recorded_richness",
+            "type": "quantitative",
+            "title": "Recorded species",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#375768"
+      },
+      "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          },
+          "axis": {
+            "title": "Species recorded"
+          }
+        },
+        "text": {
+          "field": "abbr",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.abbr == 'QLD'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#243b56",
+        "align": "right",
+        "dx": -12,
+        "dy": 18
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "value": "Most records and species"
+        },
+        "tooltip": null
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "DM Sans",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

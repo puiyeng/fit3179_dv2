@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Monthly sighting rates for 12 frequently recorded bird species, January–August 2025, the available months in this ALA search.",
+  "data": {
+    "url": "data/top_species_month_2025.csv"
+  },
+  "width": "container",
+  "height": {
+    "step": 34
+  },
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug"
+      ],
+      "axis": {
+        "title": "Month in 2025",
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "y": {
+      "field": "common_name",
+      "type": "nominal",
+      "sort": [
+        "Australian Magpie",
+        "Magpie-lark",
+        "Rainbow Lorikeet",
+        "Welcome Swallow",
+        "Noisy Miner",
+        "Willie Wagtail",
+        "Superb Fairy-wren",
+        "Sulphur-crested Cockatoo",
+        "Pacific Black Duck",
+        "Galah",
+        "Australian White Ibis",
+        "Red Wattlebird"
+      ],
+      "axis": {
+        "title": null,
+        "labelLimit": 210,
+        "labelFontSize": 12,
+        "ticks": false,
+        "domain": false,
+        "labelColor": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? '#245f8a' : '#66758a'"
+        },
+        "labelFontWeight": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? 700 : 400"
+        }
+      }
+    },
+    "color": {
+      "field": "sightings_per_10000",
+      "type": "quantitative",
+      "title": "Records per 10,000",
+      "scale": {
+        "range": [
+          "#f3f0de",
+          "#cbdcb5",
+          "#84ad88",
+          "#397858",
+          "#174934"
+        ],
+        "zero": true
+      },
+      "legend": {
+        "gradientLength": 240,
+        "titleLimit": 300,
+        "orient": "bottom",
+        "direction": "horizontal"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "scientific_name",
+        "type": "nominal",
+        "title": "Scientific name"
+      },
+      {
+        "field": "month_name",
+        "type": "nominal",
+        "title": "Month"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ","
+      },
+      {
+        "field": "sightings_per_10000",
+        "type": "quantitative",
+        "title": "Per 10,000 records",
+        "format": ".1f"
+      },
+      {
+        "field": "month_total_records",
+        "type": "quantitative",
+        "title": "All records that month",
+        "format": ","
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "mark": {
+  "type": "rect",
+  "stroke": null
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

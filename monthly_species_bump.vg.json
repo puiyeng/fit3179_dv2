@@ -1,0 +1,216 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/monthly_species_ranks_2025.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "common_name",
+        "oneOf": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ]
+      }
+    },
+    {
+      "filter": "Bump_species == null || datum.common_name == Bump_species"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug"
+      ],
+      "title": "Month in 2025",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "monthly_rank",
+      "type": "quantitative",
+      "title": "Rank among 12 species (1 = most recorded)",
+      "scale": {
+        "domain": [
+          1,
+          12
+        ],
+        "reverse": true
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "common_name",
+      "type": "nominal",
+      "title": "Selected species",
+      "scale": {
+        "domain": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "range": [
+          "#2876ae",
+          "#c17b16",
+          "#67459b",
+          "#9b7900"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 2,
+        "title": null,
+        "labelFontSize": 12,
+        "symbolSize": 100
+      }
+    },
+    "order": {
+      "field": "month",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "monthly_rank",
+        "type": "quantitative",
+        "title": "Rank among 12 species",
+        "format": "d"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ","
+      },
+      {
+        "field": "sightings_per_10000",
+        "type": "quantitative",
+        "title": "Per 10,000 records",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "params": [
+    {
+      "name": "Bump_species",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "labels": [
+          "Show all",
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "name": "Species: "
+      }
+    }
+  ],
+  "description": "Monthly ranks among the national top 12, highlighting Australian Magpie, Rainbow Lorikeet, Superb Fairy-wren and Galah, the same four species as all individual-species comparisons.",
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.common_name == 'Galah' && datum.month == 7"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "align": "right",
+        "dx": -10,
+        "dy": -18
+      },
+      "encoding": {
+        "color": {
+          "value": "#243b56"
+        },
+        "text": {
+          "value": "Galah reaches rank 7"
+        },
+        "tooltip": null
+      }
+    }
+  ]
+}

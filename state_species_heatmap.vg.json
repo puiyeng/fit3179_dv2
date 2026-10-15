@@ -1,0 +1,393 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 240,
+  "data": {
+    "values": [
+      {
+        "species": "Australian Magpie",
+        "state": "Australian Capital Territory",
+        "state_code": "ACT",
+        "species_records": 8728,
+        "state_records": 205042,
+        "per_1000": 42.57
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "New South Wales",
+        "state_code": "NSW",
+        "species_records": 38163,
+        "state_records": 1355637,
+        "per_1000": 28.15
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "Northern Territory",
+        "state_code": "NT",
+        "species_records": 371,
+        "state_records": 181069,
+        "per_1000": 2.05
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "Queensland",
+        "state_code": "QLD",
+        "species_records": 25135,
+        "state_records": 1468711,
+        "per_1000": 17.11
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "South Australia",
+        "state_code": "SA",
+        "species_records": 5822,
+        "state_records": 182382,
+        "per_1000": 31.92
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "Tasmania",
+        "state_code": "TAS",
+        "species_records": 2483,
+        "state_records": 201799,
+        "per_1000": 12.3
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "Victoria",
+        "state_code": "VIC",
+        "species_records": 44516,
+        "state_records": 1296640,
+        "per_1000": 34.33
+      },
+      {
+        "species": "Australian Magpie",
+        "state": "Western Australia",
+        "state_code": "WA",
+        "species_records": 5233,
+        "state_records": 352663,
+        "per_1000": 14.84
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Australian Capital Territory",
+        "state_code": "ACT",
+        "species_records": 2300,
+        "state_records": 205042,
+        "per_1000": 11.22
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "New South Wales",
+        "state_code": "NSW",
+        "species_records": 35997,
+        "state_records": 1355637,
+        "per_1000": 26.55
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Northern Territory",
+        "state_code": "NT",
+        "species_records": 1,
+        "state_records": 181069,
+        "per_1000": 0.01
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Queensland",
+        "state_code": "QLD",
+        "species_records": 34793,
+        "state_records": 1468711,
+        "per_1000": 23.69
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "South Australia",
+        "state_code": "SA",
+        "species_records": 3788,
+        "state_records": 182382,
+        "per_1000": 20.77
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Tasmania",
+        "state_code": "TAS",
+        "species_records": 730,
+        "state_records": 201799,
+        "per_1000": 3.62
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Victoria",
+        "state_code": "VIC",
+        "species_records": 30660,
+        "state_records": 1296640,
+        "per_1000": 23.65
+      },
+      {
+        "species": "Rainbow Lorikeet",
+        "state": "Western Australia",
+        "state_code": "WA",
+        "species_records": 4360,
+        "state_records": 352663,
+        "per_1000": 12.36
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Australian Capital Territory",
+        "state_code": "ACT",
+        "species_records": 5857,
+        "state_records": 205042,
+        "per_1000": 28.56
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "New South Wales",
+        "state_code": "NSW",
+        "species_records": 27803,
+        "state_records": 1355637,
+        "per_1000": 20.51
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Northern Territory",
+        "state_code": "NT",
+        "species_records": 0,
+        "state_records": 181069,
+        "per_1000": 0.0
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Queensland",
+        "state_code": "QLD",
+        "species_records": 8873,
+        "state_records": 1468711,
+        "per_1000": 6.04
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "South Australia",
+        "state_code": "SA",
+        "species_records": 3644,
+        "state_records": 182382,
+        "per_1000": 19.98
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Tasmania",
+        "state_code": "TAS",
+        "species_records": 7465,
+        "state_records": 201799,
+        "per_1000": 36.99
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Victoria",
+        "state_code": "VIC",
+        "species_records": 32328,
+        "state_records": 1296640,
+        "per_1000": 24.93
+      },
+      {
+        "species": "Superb Fairy-wren",
+        "state": "Western Australia",
+        "state_code": "WA",
+        "species_records": 0,
+        "state_records": 352663,
+        "per_1000": 0.0
+      },
+      {
+        "species": "Galah",
+        "state": "Australian Capital Territory",
+        "state_code": "ACT",
+        "species_records": 5751,
+        "state_records": 205042,
+        "per_1000": 28.05
+      },
+      {
+        "species": "Galah",
+        "state": "New South Wales",
+        "state_code": "NSW",
+        "species_records": 18733,
+        "state_records": 1355637,
+        "per_1000": 13.82
+      },
+      {
+        "species": "Galah",
+        "state": "Northern Territory",
+        "state_code": "NT",
+        "species_records": 1804,
+        "state_records": 181069,
+        "per_1000": 9.96
+      },
+      {
+        "species": "Galah",
+        "state": "Queensland",
+        "state_code": "QLD",
+        "species_records": 12072,
+        "state_records": 1468711,
+        "per_1000": 8.22
+      },
+      {
+        "species": "Galah",
+        "state": "South Australia",
+        "state_code": "SA",
+        "species_records": 4664,
+        "state_records": 182382,
+        "per_1000": 25.57
+      },
+      {
+        "species": "Galah",
+        "state": "Tasmania",
+        "state_code": "TAS",
+        "species_records": 1438,
+        "state_records": 201799,
+        "per_1000": 7.13
+      },
+      {
+        "species": "Galah",
+        "state": "Victoria",
+        "state_code": "VIC",
+        "species_records": 23777,
+        "state_records": 1296640,
+        "per_1000": 18.34
+      },
+      {
+        "species": "Galah",
+        "state": "Western Australia",
+        "state_code": "WA",
+        "species_records": 6560,
+        "state_records": 352663,
+        "per_1000": 18.6
+      }
+    ]
+  },
+  "mark": {
+  "type": "rect",
+  "stroke": null
+  },
+  "encoding": {
+    "x": {
+      "field": "state_code",
+      "type": "ordinal",
+      "title": "State or territory",
+      "sort": [
+        "ACT",
+        "NSW",
+        "NT",
+        "QLD",
+        "SA",
+        "TAS",
+        "VIC",
+        "WA"
+      ],
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "species",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Australian Magpie",
+        "Rainbow Lorikeet",
+        "Superb Fairy-wren",
+        "Galah"
+      ]
+    },
+    "color": {
+      "field": "per_1000",
+      "type": "quantitative",
+      "title": "Records per 1,000",
+      "scale": {
+        "domain": [
+          0,
+          20,
+          45
+        ],
+        "range": [
+          "#f7f4fb",
+          "#b391d4",
+          "#553481"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 240,
+        "titleLimit": 300
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State or territory"
+      },
+      {
+        "field": "species",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "per_1000",
+        "type": "quantitative",
+        "title": "Per 1,000 records",
+        "format": ".2f"
+      },
+      {
+        "field": "species_records",
+        "type": "quantitative",
+        "title": "Species records",
+        "format": ","
+      },
+      {
+        "field": "state_records",
+        "type": "quantitative",
+        "title": "All state records",
+        "format": ","
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "species",
+        "oneOf": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ]
+      }
+    }
+  ],
+  "description": "State sighting rates for the same four focus birds as the monthly views, repeated location maps and seasonal connected dot plot.",
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}
