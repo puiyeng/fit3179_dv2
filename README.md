@@ -26,7 +26,7 @@ Extract the ZIP, open `australian_birds_dv22` in VS Code, and run **Open with Li
 - The scatterplot has smaller solid dots and a state dropdown. Selecting a state isolates its point on fixed axes, retaining true positions without jitter.
 - Other charts provide hover details. The two overview charts retain all 12 species for a consistent comparison.
 
-Vega-Embed's three-dot action menu is available. **Open in Vega Editor** opens the specification, but the editor will need publicly accessible absolute URLs to load files currently referenced by local `data/` paths. A local JSON file can also be inspected with the VS Code Vega preview extension.
+Vega-Embed's three-dot action menu is available. The shared `embedChart` function loads each specification and converts its data URLs to full URLs based on the current webpage. This includes nested lookup data and the repeated maps. **Open in Vega Editor** therefore receives data URLs pointing back to the published website. Keep the `data/` folder publicly accessible alongside `index.html`. The JSON files retain portable relative paths; if you paste a raw JSON file directly into Vega Editor, replace those paths with public absolute URLs first. A local JSON file can also be inspected with the VS Code Vega preview extension.
 
 ## Layout and typography
 

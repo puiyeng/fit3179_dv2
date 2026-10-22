@@ -24,10 +24,35 @@ function scheduleChartAlignment() {
 }
 
 function embedChart(selector, specification, options) {
-  return vegaEmbed(selector, specification, Object.assign({
-    renderer: "svg",
-    actions: true
-  }, options || {}));
+  var loadedSpec = typeof specification === "string" ?
+    fetch(specification).then(function(response) {
+      if (!response.ok) {
+        throw new Error("Cannot load " + specification + ": " + response.status);
+      }
+      return response.json();
+    }) : Promise.resolve(specification);
+
+  return loadedSpec.then(function(sourceSpec) {
+    var spec = JSON.parse(JSON.stringify(sourceSpec));
+
+    // The editor receives this spec, so its data URLs must point to this website.
+    // Visiting every nested object also covers lookup joins and repeated maps.
+    function resolveDataUrls(node) {
+      if (!node || typeof node !== "object") return;
+      if (node.data && typeof node.data.url === "string") {
+        node.data.url = new URL(node.data.url, document.baseURI).href;
+      }
+      Object.keys(node).forEach(function(key) {
+        resolveDataUrls(node[key]);
+      });
+    }
+
+    resolveDataUrls(spec);
+    return vegaEmbed(selector, spec, Object.assign({
+      renderer: "svg",
+      actions: true
+    }, options || {}));
+  });
 }
 
 window.addEventListener("load", scheduleChartAlignment);
