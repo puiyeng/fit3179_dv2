@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/top_species_month_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank": "number",
+        "month": "number",
+        "sightings": "number",
+        "month_total_records": "number",
+        "sightings_per_10000": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "[\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\"][datum.month - 1]",
+      "as": "month_full"
+    },
+    {
+      "filter": {
+        "field": "common_name",
+        "oneOf": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ]
+      }
+    },
+    {
+      "filter": "Species_selection == null || datum.common_name == Species_selection"
+    },
+    {
+      "filter": "datum.month <= Playback_month"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "month_full",
+      "type": "ordinal",
+      "sort": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August"
+      ],
+      "title": "Month in 2025",
+      "scale": {
+        "domain": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August"
+        ]
+      },
+      "axis": {
+        "labelAngle": {
+          "expr": "width < 500 ? -65 : 0"
+        },
+        "labelAlign": {
+          "expr": "width < 500 ? 'right' : 'center'"
+        },
+        "labelPadding": 6,
+        "labelLimit": 120,
+        "labelOverlap": false,
+        "labelBaseline": {
+          "expr": "width < 500 ? 'middle' : 'top'"
+        }
+      }
+    },
+    "y": {
+      "field": "sightings_per_10000",
+      "type": "quantitative",
+      "title": "Sightings per 10,000 observation records",
+      "scale": {
+        "zero": false,
+        "domain": [
+          110,
+          280
+        ]
+      }
+    },
+    "color": {
+      "field": "common_name",
+      "type": "nominal",
+      "title": "Species",
+      "scale": {
+        "domain": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "range": [
+          "#2876ae",
+          "#c17b16",
+          "#67459b",
+          "#9b7900"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 2,
+        "title": null,
+        "labelFontSize": 12,
+        "symbolSize": 100,
+        "symbolOpacity": 1,
+        "symbolStrokeWidth": 0,
+        "symbolType": "circle"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "month_full",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "sightings_per_10000",
+        "type": "quantitative",
+        "title": "Per 10,000 records",
+        "format": ".1f"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "params": [
+    {
+      "name": "Playback_month",
+      "value": 8
+    },
+    {
+      "name": "Species_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "labels": [
+          "Show all",
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "name": "Species: "
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    },
+    "point": {
+      "opacity": 1
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true,
+        "opacity": 1
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "align": {
+          "expr": "Playback_month < 4 ? 'left' : 'right'"
+        },
+        "baseline": {
+          "expr": "Species_selection != null ? (datum.last_rate < 150 ? 'bottom' : 'top') : (Playback_month > 1 && Playback_month < 6 ? 'bottom' : 'top')"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "dx": {
+          "expr": "Playback_month < 4 ? 10 : -10"
+        },
+        "dy": {
+          "expr": "Species_selection != null ? (datum.last_rate < 150 ? -15 : 15) : (Playback_month == 1 ? 15 : (Playback_month < 6 ? -20 : 28))"
+        },
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "datum": {
+            "expr": "['January','February','March','April','May','June','July','August'][Playback_month - 1]"
+          },
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "last_rate",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "rate_finding",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "color": {
+          "value": "#243b56"
+        },
+        "description": {
+          "field": "rate_finding",
+          "type": "nominal"
+        },
+        "order": null
+      },
+      "transform": [
+        {
+          "filter": "datum.common_name == (Species_selection == null ? 'Superb Fairy-wren' : Species_selection)"
+        },
+        {
+          "calculate": "datum.month == 1 ? datum.sightings_per_10000 : 0",
+          "as": "january_rate"
+        },
+        {
+          "calculate": "datum.month == Playback_month ? datum.sightings_per_10000 : 0",
+          "as": "last_rate"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "max",
+              "field": "january_rate",
+              "as": "january_rate"
+            },
+            {
+              "op": "max",
+              "field": "last_rate",
+              "as": "last_rate"
+            }
+          ],
+          "groupby": [
+            "common_name"
+          ]
+        },
+        {
+          "calculate": "Playback_month == 1 ? 'January baseline\\n' + format(datum.january_rate, '.1f') + ' records per 10,000.' : format(abs(datum.last_rate / datum.january_rate - 1), '.0%') + (datum.last_rate >= datum.january_rate ? ' higher' : ' lower') + '\\nsince January'",
+          "as": "rate_finding"
+        }
+      ],
+      "name": "rate_finding"
+    }
+  ]
+}

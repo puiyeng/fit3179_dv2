@@ -1,0 +1,721 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 370,
+  "data": {
+    "values": [
+      {
+        "state": "Australian Capital Territory",
+        "abbr": "ACT",
+        "total_records": 205042,
+        "raw_recorded_richness": 235
+      },
+      {
+        "state": "New South Wales",
+        "abbr": "NSW",
+        "total_records": 1355637,
+        "raw_recorded_richness": 481
+      },
+      {
+        "state": "Northern Territory",
+        "abbr": "NT",
+        "total_records": 181069,
+        "raw_recorded_richness": 348
+      },
+      {
+        "state": "Queensland",
+        "abbr": "QLD",
+        "total_records": 1468711,
+        "raw_recorded_richness": 565
+      },
+      {
+        "state": "South Australia",
+        "abbr": "SA",
+        "total_records": 182382,
+        "raw_recorded_richness": 352
+      },
+      {
+        "state": "Tasmania",
+        "abbr": "TAS",
+        "total_records": 201799,
+        "raw_recorded_richness": 233
+      },
+      {
+        "state": "Victoria",
+        "abbr": "VIC",
+        "total_records": 1296640,
+        "raw_recorded_richness": 403
+      },
+      {
+        "state": "Western Australia",
+        "abbr": "WA",
+        "total_records": 352663,
+        "raw_recorded_richness": 448
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "total_records",
+      "type": "quantitative",
+      "title": "Observation records",
+      "scale": {
+        "domain": [
+          0,
+          1600000
+        ]
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 4,
+        "titlePadding": 12
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "size": 45,
+        "color": "#667888",
+        "stroke": "white",
+        "strokeWidth": 0.7,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "total_records",
+            "type": "quantitative",
+            "title": "Observation records",
+            "format": ",.0f"
+          },
+          {
+            "field": "raw_recorded_richness",
+            "type": "quantitative",
+            "title": "Recorded species",
+            "format": ",.0f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Australian Capital Territory"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'left'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : 12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -24"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Tasmania"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'left'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'top'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : 12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : 12"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Northern Territory"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'left'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'top'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : 12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : 12"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "South Australia"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'left'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : 12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -24"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Western Australia"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'left'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : 12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -24"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "New South Wales"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'right'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : -12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -24"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Victoria"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'right'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : -12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -12"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "state",
+            "equal": "Queensland"
+          }
+        },
+        {
+          "filter": "Scatter_state == null || datum.state == Scatter_state"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 12 : 11"
+        },
+        "color": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? '#243b56' : '#375768'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? 'right' : 'left') : 'right'"
+        },
+        "baseline": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? 'bottom' : 'top') : 'bottom'"
+        },
+        "dx": {
+          "expr": "Scatter_state != null ? (datum.total_records > 1000000 ? -12 : 12) : -12"
+        },
+        "dy": {
+          "expr": "Scatter_state != null ? (datum.raw_recorded_richness < 300 ? -18 : 18) : -12"
+        },
+        "font": "DM Sans",
+        "fontWeight": {
+          "expr": "datum.state == 'Northern Territory' || Scatter_state != null ? 700 : 400"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "name": "tasmania_species_finding",
+      "transform": [
+        {
+          "filter": "datum.state == 'Tasmania' && Scatter_state == null"
+        },
+        {
+          "calculate": "format(datum.raw_recorded_richness, ',.0f') + ' species'",
+          "as": "species_finding"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "DM Sans",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "lineHeight": 14,
+        "color": "#243b56",
+        "align": "left",
+        "baseline": "top",
+        "dx": 12,
+        "dy": 26
+      },
+      "encoding": {
+        "y": {
+          "field": "raw_recorded_richness",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "domain": [
+              180,
+              620
+            ]
+          }
+        },
+        "text": {
+          "field": "species_finding",
+          "type": "nominal"
+        },
+        "description": {
+          "field": "species_finding",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "order": null
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "DM Sans",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "transform": [
+    {
+      "calculate": "{\"Australian Capital Territory\": \"Australian Capital\\nTerritory\", \"New South Wales\": \"New South\\nWales\", \"Northern Territory\": \"Northern\\nTerritory\", \"Queensland\": \"Queensland\", \"South Australia\": \"South\\nAustralia\", \"Tasmania\": \"Tasmania\", \"Victoria\": \"Victoria\", \"Western Australia\": \"Western\\nAustralia\"}[datum.state]",
+      "as": "state_label"
+    },
+    {
+      "calculate": "datum.state == 'Tasmania' ? datum.raw_recorded_richness : 0",
+      "as": "tasmania_richness"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "tasmania_richness",
+          "as": "tasmania_richness"
+        },
+        {
+          "op": "sum",
+          "field": "total_records",
+          "as": "all_records"
+        }
+      ]
+    },
+    {
+      "calculate": "Scatter_state != null ? datum.state_label + '\\n' + format(datum.total_records / datum.all_records, '.1%') + ' of mapped records' : datum.state == 'Northern Territory' ? 'Northern Territory: ' + format(datum.raw_recorded_richness - datum.tasmania_richness, ',.0f') + ' more species\\nthan Tasmania, with fewer records.' : datum.state_label",
+      "as": "state_label"
+    }
+  ],
+  "params": [
+    {
+      "name": "Scatter_state",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Australian Capital Territory",
+          "New South Wales",
+          "Northern Territory",
+          "Queensland",
+          "South Australia",
+          "Tasmania",
+          "Victoria",
+          "Western Australia"
+        ],
+        "labels": [
+          "Show all states",
+          "Australian Capital Territory",
+          "New South Wales",
+          "Northern Territory",
+          "Queensland",
+          "South Australia",
+          "Tasmania",
+          "Victoria",
+          "Western Australia"
+        ],
+        "name": "State: "
+      }
+    }
+  ]
+}

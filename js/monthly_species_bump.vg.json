@@ -1,0 +1,357 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/monthly_species_ranks_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "month": "number",
+        "monthly_rank": "number",
+        "sightings": "number",
+        "sightings_per_10000": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "[\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\"][datum.month - 1]",
+      "as": "month_full"
+    },
+    {
+      "filter": {
+        "field": "common_name",
+        "oneOf": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ]
+      }
+    },
+    {
+      "filter": "Bump_species == null || datum.common_name == Bump_species"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "month_full",
+      "type": "ordinal",
+      "sort": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August"
+      ],
+      "title": "Month in 2025",
+      "axis": {
+        "labelAngle": {
+          "expr": "width < 500 ? -65 : 0"
+        },
+        "labelAlign": {
+          "expr": "width < 500 ? 'right' : 'center'"
+        },
+        "labelPadding": 6,
+        "labelLimit": 120,
+        "labelOverlap": false,
+        "labelBaseline": {
+          "expr": "width < 500 ? 'middle' : 'top'"
+        }
+      }
+    },
+    "y": {
+      "field": "monthly_rank",
+      "type": "quantitative",
+      "title": "Rank among 12 species (1 = most recorded)",
+      "scale": {
+        "domain": [
+          1,
+          12
+        ],
+        "reverse": true
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "common_name",
+      "type": "nominal",
+      "title": "Selected species",
+      "scale": {
+        "domain": [
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "range": [
+          "#2876ae",
+          "#c17b16",
+          "#67459b",
+          "#9b7900"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 2,
+        "title": null,
+        "labelFontSize": 12,
+        "symbolSize": 100,
+        "symbolOpacity": 1,
+        "symbolStrokeWidth": 0,
+        "symbolType": "circle"
+      }
+    },
+    "order": {
+      "field": "month",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "month_full",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "monthly_rank",
+        "type": "quantitative",
+        "title": "Rank among 12 species",
+        "format": "d"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ",.0f"
+      },
+      {
+        "field": "sightings_per_10000",
+        "type": "quantitative",
+        "title": "Per 10,000 records",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    },
+    "point": {
+      "opacity": 1
+    }
+  },
+  "description": "Monthly ranks among the national top 12, highlighting Australian Magpie, Rainbow Lorikeet, Superb Fairy-wren and Galah, the same four species as all individual-species comparisons.",
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true,
+        "opacity": 1
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "align": "right",
+        "baseline": "bottom",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "dx": -10,
+        "dy": -18,
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "datum": "July",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "July",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "rank_finding",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "color": {
+          "value": "#243b56"
+        },
+        "description": {
+          "field": "rank_finding",
+          "type": "nominal"
+        },
+        "order": null
+      },
+      "transform": [
+        {
+          "filter": "Bump_species == null && datum.common_name == 'Galah' && (datum.month == 3 || datum.month == 7)"
+        },
+        {
+          "pivot": "month_full",
+          "value": "monthly_rank",
+          "groupby": [
+            "common_name"
+          ]
+        },
+        {
+          "calculate": "'Galah rises from rank ' + format(datum.March, 'd') + ' to ' + format(datum.July, 'd') + '\\nfrom March to July.'",
+          "as": "rank_finding"
+        }
+      ],
+      "name": "rank_finding"
+    },
+    {
+      "name": "selected_rank_finding",
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "align": "right",
+        "baseline": {
+          "expr": "datum.august_rank > 9 ? 'bottom' : 'top'"
+        },
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "dx": -10,
+        "dy": {
+          "expr": "datum.august_rank > 9 ? -15 : 15"
+        },
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "datum": "August",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "august_rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "selected_rank_finding",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#243b56"
+        },
+        "tooltip": null,
+        "description": {
+          "field": "selected_rank_finding",
+          "type": "nominal"
+        },
+        "order": null
+      },
+      "transform": [
+        {
+          "filter": "Bump_species != null"
+        },
+        {
+          "calculate": "datum.month == 8 ? datum.monthly_rank : 0",
+          "as": "august_rank"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "monthly_rank",
+              "as": "best_rank"
+            },
+            {
+              "op": "max",
+              "field": "monthly_rank",
+              "as": "worst_rank"
+            },
+            {
+              "op": "max",
+              "field": "august_rank",
+              "as": "august_rank"
+            }
+          ],
+          "groupby": [
+            "common_name"
+          ]
+        },
+        {
+          "calculate": "datum.best_rank == datum.worst_rank ? datum.common_name + ' holds rank ' + format(datum.best_rank, 'd') + '\\nin every available month.' : datum.common_name + ': ranks ' + format(datum.best_rank, 'd') + ' to ' + format(datum.worst_rank, 'd') + '\\namong the 12 overview species.'",
+          "as": "selected_rank_finding"
+        }
+      ]
+    }
+  ],
+  "params": [
+    {
+      "name": "Bump_species",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "labels": [
+          "Show all",
+          "Australian Magpie",
+          "Rainbow Lorikeet",
+          "Superb Fairy-wren",
+          "Galah"
+        ],
+        "name": "Species: "
+      }
+    }
+  ]
+}

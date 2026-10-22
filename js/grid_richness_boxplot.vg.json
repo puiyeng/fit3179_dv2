@@ -1,0 +1,841 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/grid_richness_by_state.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "expected_species_per_500": "number",
+        "raw_species_richness": "number",
+        "observation_records": "number",
+        "jitter": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "state_full",
+      "type": "nominal",
+      "sort": [
+        "Australian Capital Territory",
+        "New South Wales",
+        "Northern Territory",
+        "Queensland",
+        "South Australia",
+        "Tasmania",
+        "Victoria",
+        "Western Australia"
+      ],
+      "axis": {
+        "labelAngle": {
+          "expr": "width < 500 ? -90 : 0"
+        },
+        "labelExpr": "width < 500 ? datum.label : split(datum.label, ' ')",
+        "labelLineHeight": 14,
+        "labelPadding": 6,
+        "labelLimit": 220,
+        "labelOverlap": false,
+        "labelAlign": {
+          "expr": "width < 500 ? 'right' : 'center'"
+        },
+        "labelBaseline": {
+          "expr": "width < 500 ? 'middle' : 'top'"
+        }
+      },
+      "title": "State or territory"
+    },
+    "y": {
+      "field": "expected_species_per_500",
+      "type": "quantitative",
+      "axis": {
+        "title": "Expected species in 500 records"
+      },
+      "scale": {
+        "domain": [
+          0,
+          170
+        ],
+        "nice": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "color": "#748493",
+        "size": 18,
+        "opacity": 0.3
+      },
+      "encoding": {
+        "xOffset": {
+          "field": "jitter",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -0.5,
+              0.5
+            ],
+            "range": [
+              {
+                "expr": "bandwidth('x') / 2 - min(28, bandwidth('x') * 0.36)"
+              },
+              {
+                "expr": "bandwidth('x') / 2 + min(28, bandwidth('x') * 0.36)"
+              }
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "cell",
+            "type": "nominal",
+            "title": "1\u00b0 grid cell"
+          },
+          {
+            "field": "expected_species_per_500",
+            "type": "quantitative",
+            "title": "Expected species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "raw_species_richness",
+            "type": "quantitative",
+            "title": "Species in all cell records",
+            "format": ",.0f"
+          },
+          {
+            "field": "observation_records",
+            "type": "quantitative",
+            "title": "Cell observation records",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#556575",
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_min",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ],
+        "y2": {
+          "field": "summary_q1"
+        }
+      },
+      "name": "lower_whisker"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#556575",
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_q3",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ],
+        "y2": {
+          "field": "summary_max"
+        }
+      },
+      "name": "upper_whisker"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "size": 34,
+        "color": "#c1ccd4",
+        "opacity": 0.55,
+        "stroke": "#7d8c9a",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_q1",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ],
+        "y2": {
+          "field": "summary_q3"
+        }
+      },
+      "name": "quartile_box"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "orient": "horizontal",
+        "size": 34,
+        "thickness": 2.5,
+        "color": "#27364a",
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_median",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ]
+      },
+      "name": "median_line"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "orient": "horizontal",
+        "size": 20,
+        "thickness": 2,
+        "color": "#556575",
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_min",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ]
+      },
+      "name": "minimum_cap"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state !== 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "expected_species_per_500",
+              "as": "summary_min"
+            },
+            {
+              "op": "q1",
+              "field": "expected_species_per_500",
+              "as": "summary_q1"
+            },
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "summary_median"
+            },
+            {
+              "op": "q3",
+              "field": "expected_species_per_500",
+              "as": "summary_q3"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "summary_max"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "tick",
+        "orient": "horizontal",
+        "size": 20,
+        "thickness": 2,
+        "color": "#556575",
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "summary_max",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "state_full",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "summary_min",
+            "type": "quantitative",
+            "title": "Minimum species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q1",
+            "type": "quantitative",
+            "title": "Lower quartile (25%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_median",
+            "type": "quantitative",
+            "title": "Median species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_q3",
+            "type": "quantitative",
+            "title": "Upper quartile (75%)",
+            "format": ".1f"
+          },
+          {
+            "field": "summary_max",
+            "type": "quantitative",
+            "title": "Maximum species in 500 records",
+            "format": ".1f"
+          }
+        ]
+      },
+      "name": "maximum_cap"
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "align": "center",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "dx": 0,
+        "dy": -14,
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "field": "state_full",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "note_height",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "median_finding",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "color": {
+          "value": "#243b56"
+        },
+        "description": {
+          "field": "median_finding",
+          "type": "nominal"
+        },
+        "order": null
+      },
+      "transform": [
+        {
+          "filter": "indexof(['VIC', 'TAS'], datum.state) >= 0"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "median",
+              "field": "expected_species_per_500",
+              "as": "state_median"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        },
+        {
+          "pivot": "state_full",
+          "value": "state_median"
+        },
+        {
+          "calculate": "'Victoria'",
+          "as": "state_full"
+        },
+        {
+          "calculate": "158",
+          "as": "note_height"
+        },
+        {
+          "calculate": "'Victoria\u2019s median\\n' + format(datum.Victoria - datum.Tasmania, '.0f') + ' species higher\\nthan Tasmania\u2019s'",
+          "as": "median_finding"
+        }
+      ]
+    },
+    {
+      "name": "capital_territory_sample_note",
+      "transform": [
+        {
+          "filter": "datum.state === 'ACT'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "cell_count"
+            },
+            {
+              "op": "max",
+              "field": "expected_species_per_500",
+              "as": "cell_peak"
+            }
+          ],
+          "groupby": [
+            "state_full"
+          ]
+        },
+        {
+          "calculate": "'Only ' + format(datum.cell_count, '.0f') + ' cells\\nBox omitted:\\ntoo few cells'",
+          "as": "sample_note"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "DM Sans",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "lineHeight": 14,
+        "lineBreak": "\n",
+        "color": "#243b56",
+        "align": "left",
+        "baseline": "top",
+        "dy": {
+          "expr": "width < 500 ? 92 : 18"
+        },
+        "dx": {
+          "expr": "width < 500 ? -20 : -40"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "state_full",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "cell_peak",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "sample_note",
+          "type": "nominal"
+        },
+        "description": {
+          "field": "sample_note",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "order": null
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "font": "DM Sans",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "transform": [
+    {
+      "calculate": "{\"ACT\": \"Australian Capital Territory\", \"NSW\": \"New South Wales\", \"NT\": \"Northern Territory\", \"QLD\": \"Queensland\", \"SA\": \"South Australia\", \"TAS\": \"Tasmania\", \"VIC\": \"Victoria\", \"WA\": \"Western Australia\"}[datum.state]",
+      "as": "state_full"
+    }
+  ]
+}

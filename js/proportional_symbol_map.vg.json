@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 320,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white",
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_symbols.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "longitude": "number",
+            "latitude": "number",
+            "sightings": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "color": "#667888",
+        "opacity": 1,
+        "stroke": "#41515f",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "sightings",
+          "type": "quantitative",
+          "title": "Observation records",
+          "scale": {
+            "domain": [
+              0,
+              1500000
+            ],
+            "range": [
+              0,
+              2500
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "values": [
+              500000,
+              1000000,
+              1500000
+            ],
+            "format": ",.0f",
+            "title": "Observation records",
+            "symbolStrokeColor": "#41515f",
+            "labelFontSize": 12,
+            "symbolOpacity": 1,
+            "symbolFillColor": "#667888"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State or territory"
+          },
+          {
+            "field": "sightings",
+            "type": "quantitative",
+            "title": "Observation records",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "name": "named_state_shares",
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -46,
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "text": {
+          "field": "map_state_label",
+          "type": "nominal"
+        },
+        "description": {
+          "field": "map_state_label",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      },
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "sightings",
+              "as": "all_records"
+            }
+          ]
+        },
+        {
+          "filter": {
+            "field": "state",
+            "oneOf": [
+              "Queensland",
+              "New South Wales"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.state + '\\n' + format(datum.sightings / datum.all_records, '.0%') + ' of mapped records'",
+          "as": "map_state_label"
+        }
+      ],
+      "data": {
+        "url": "data/state_symbols.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "longitude": "number",
+            "latitude": "number",
+            "sightings": "number"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

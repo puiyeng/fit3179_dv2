@@ -1,0 +1,379 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f0f2f2",
+        "stroke": null,
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "url": "data/grid_richness_1deg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "grid"
+        },
+        "name": "grid_cells"
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.4,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "properties.expected_species_per_500",
+          "type": "quantitative",
+          "title": "Expected species in 500 records",
+          "scale": {
+            "domain": [
+              0,
+              75,
+              150
+            ],
+            "range": [
+              "#f4e9b9",
+              "#a6cf9c",
+              "#25684d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 240,
+            "titleLimit": 300,
+            "gradientOpacity": 1
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.cell",
+            "type": "nominal",
+            "title": "1\u00b0 cell (longitude, latitude)"
+          },
+          {
+            "field": "properties.expected_species_per_500",
+            "type": "quantitative",
+            "title": "Expected species in 500 records",
+            "format": ".1f"
+          },
+          {
+            "field": "properties.raw_species_richness",
+            "type": "quantitative",
+            "title": "Species in all cell records",
+            "format": ",.0f"
+          },
+          {
+            "field": "properties.observation_records",
+            "type": "quantitative",
+            "title": "Cell observation records",
+            "format": ",.0f"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.observation_records >= Min_cell_records"
+        }
+      ]
+    },
+    {
+      "data": {
+        "url": "data/states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#aab6b0",
+        "strokeWidth": 0.5,
+        "tooltip": null
+      }
+    },
+    {
+      "name": "peak_cell_locator",
+      "data": {
+        "url": "data/grid_richness_1deg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "grid"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.observation_records >= Min_cell_records"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "cell_rank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "properties.expected_species_per_500",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.cell_rank == 1"
+        },
+        {
+          "calculate": "datum.properties.longitude + 0.5",
+          "as": "label_longitude"
+        },
+        {
+          "calculate": "datum.properties.latitude + 0.5",
+          "as": "label_latitude"
+        },
+        {
+          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "as": "peak_cell_finding"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": false,
+        "size": 80,
+        "stroke": "#243b56",
+        "strokeWidth": 1.7
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_latitude",
+          "type": "quantitative"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "name": "peak_cell_leader",
+      "data": {
+        "url": "data/grid_richness_1deg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "grid"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.observation_records >= Min_cell_records"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "cell_rank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "properties.expected_species_per_500",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.cell_rank == 1"
+        },
+        {
+          "calculate": "datum.properties.longitude + 0.5",
+          "as": "label_longitude"
+        },
+        {
+          "calculate": "datum.properties.latitude + 0.5",
+          "as": "label_latitude"
+        },
+        {
+          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "as": "peak_cell_finding"
+        },
+        {
+          "calculate": "datum.label_longitude",
+          "as": "callout_longitude"
+        },
+        {
+          "calculate": "-10",
+          "as": "callout_latitude"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#667888",
+        "strokeWidth": 1,
+        "tooltip": null
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_latitude",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "callout_longitude"
+        },
+        "latitude2": {
+          "field": "callout_latitude"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "name": "peak_cell_finding",
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": "right",
+        "dx": -8,
+        "dy": -12,
+        "baseline": "bottom",
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "text": {
+          "field": "peak_cell_finding",
+          "type": "nominal"
+        },
+        "description": {
+          "field": "peak_cell_finding",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "longitude": {
+          "field": "callout_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "callout_latitude",
+          "type": "quantitative"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.observation_records >= Min_cell_records"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "cell_rank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "properties.expected_species_per_500",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.cell_rank == 1"
+        },
+        {
+          "calculate": "datum.properties.longitude + 0.5",
+          "as": "label_longitude"
+        },
+        {
+          "calculate": "datum.properties.latitude + 0.5",
+          "as": "label_latitude"
+        },
+        {
+          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "as": "peak_cell_finding"
+        },
+        {
+          "calculate": "datum.label_longitude",
+          "as": "callout_longitude"
+        },
+        {
+          "calculate": "-10",
+          "as": "callout_latitude"
+        }
+      ],
+      "data": {
+        "url": "data/grid_richness_1deg.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "grid"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "params": [
+    {
+      "name": "Min_cell_records",
+      "value": 500,
+      "bind": {
+        "input": "range",
+        "min": 500,
+        "max": 10000,
+        "step": 500,
+        "name": "Minimum cell records: "
+      }
+    }
+  ],
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": {
+    "top": 48,
+    "left": 5,
+    "right": 5,
+    "bottom": 5
+  }
+}

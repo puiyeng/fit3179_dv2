@@ -1,0 +1,97 @@
+month,month_name,common_name,scientific_name,monthly_rank,sightings,sightings_per_10000
+1,Jan,Australian Magpie,Gymnorhina tibicen,1,19171,239.9
+1,Jan,Magpie-lark,Grallina cyanoleuca,2,16896,211.4
+1,Jan,Rainbow Lorikeet,Trichoglossus moluccanus,3,15710,196.6
+1,Jan,Superb Fairy-wren,Malurus (Malurus) cyaneus,4,15497,193.9
+1,Jan,Welcome Swallow,Hirundo (Hirundo) neoxena,5,14374,179.9
+1,Jan,Noisy Miner,Manorina (Myzantha) melanocephala,6,14132,176.9
+1,Jan,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,7,13668,171.0
+1,Jan,Pacific Black Duck,Anas (Anas) superciliosa,8,13308,166.5
+1,Jan,Australian White Ibis,Threskiornis moluccus,9,12031,150.6
+1,Jan,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,10,11977,149.9
+1,Jan,Galah,Eolophus roseicapilla,11,10430,130.5
+1,Jan,Red Wattlebird,Anthochaera (Anthochaera) carunculata,12,9446,118.2
+2,Feb,Australian Magpie,Gymnorhina tibicen,1,15008,255.6
+2,Feb,Magpie-lark,Grallina cyanoleuca,2,12929,220.2
+2,Feb,Rainbow Lorikeet,Trichoglossus moluccanus,3,12731,216.9
+2,Feb,Noisy Miner,Manorina (Myzantha) melanocephala,4,11340,193.2
+2,Feb,Superb Fairy-wren,Malurus (Malurus) cyaneus,5,10880,185.3
+2,Feb,Welcome Swallow,Hirundo (Hirundo) neoxena,6,10448,178.0
+2,Feb,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,7,10001,170.4
+2,Feb,Pacific Black Duck,Anas (Anas) superciliosa,8,9914,168.9
+2,Feb,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,9,9284,158.1
+2,Feb,Australian White Ibis,Threskiornis moluccus,10,8715,148.5
+2,Feb,Galah,Eolophus roseicapilla,11,7310,124.5
+2,Feb,Red Wattlebird,Anthochaera (Anthochaera) carunculata,12,6523,111.1
+3,Mar,Australian Magpie,Gymnorhina tibicen,1,15926,264.5
+3,Mar,Magpie-lark,Grallina cyanoleuca,2,13589,225.7
+3,Mar,Rainbow Lorikeet,Trichoglossus moluccanus,3,13305,221.0
+3,Mar,Welcome Swallow,Hirundo (Hirundo) neoxena,4,12211,202.8
+3,Mar,Noisy Miner,Manorina (Myzantha) melanocephala,5,11662,193.7
+3,Mar,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,6,11004,182.7
+3,Mar,Superb Fairy-wren,Malurus (Malurus) cyaneus,7,9901,164.4
+3,Mar,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,8,9625,159.8
+3,Mar,Pacific Black Duck,Anas (Anas) superciliosa,9,9623,159.8
+3,Mar,Australian White Ibis,Threskiornis moluccus,10,8807,146.3
+3,Mar,Red Wattlebird,Anthochaera (Anthochaera) carunculata,11,8312,138.0
+3,Mar,Galah,Eolophus roseicapilla,12,8192,136.0
+4,Apr,Australian Magpie,Gymnorhina tibicen,1,17003,259.5
+4,Apr,Magpie-lark,Grallina cyanoleuca,2,14795,225.8
+4,Apr,Welcome Swallow,Hirundo (Hirundo) neoxena,3,14433,220.3
+4,Apr,Rainbow Lorikeet,Trichoglossus moluccanus,4,14251,217.5
+4,Apr,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,5,13015,198.7
+4,Apr,Noisy Miner,Manorina (Myzantha) melanocephala,6,12775,195.0
+4,Apr,Superb Fairy-wren,Malurus (Malurus) cyaneus,7,10778,164.5
+4,Apr,Red Wattlebird,Anthochaera (Anthochaera) carunculata,8,10628,162.2
+4,Apr,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,9,10341,157.9
+4,Apr,Galah,Eolophus roseicapilla,10,9643,147.2
+4,Apr,Pacific Black Duck,Anas (Anas) superciliosa,11,9448,144.2
+4,Apr,Australian White Ibis,Threskiornis moluccus,12,8546,130.5
+5,May,Australian Magpie,Gymnorhina tibicen,1,15025,255.3
+5,May,Rainbow Lorikeet,Trichoglossus moluccanus,2,13530,229.9
+5,May,Magpie-lark,Grallina cyanoleuca,3,13452,228.6
+5,May,Welcome Swallow,Hirundo (Hirundo) neoxena,4,12133,206.2
+5,May,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,5,11803,200.5
+5,May,Noisy Miner,Manorina (Myzantha) melanocephala,6,11354,192.9
+5,May,Superb Fairy-wren,Malurus (Malurus) cyaneus,7,9688,164.6
+5,May,Red Wattlebird,Anthochaera (Anthochaera) carunculata,8,9319,158.3
+5,May,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,9,9172,155.8
+5,May,Galah,Eolophus roseicapilla,10,8909,151.4
+5,May,Pacific Black Duck,Anas (Anas) superciliosa,11,8628,146.6
+5,May,Australian White Ibis,Threskiornis moluccus,12,7714,131.1
+6,Jun,Australian Magpie,Gymnorhina tibicen,1,15547,250.9
+6,Jun,Rainbow Lorikeet,Trichoglossus moluccanus,2,14059,226.9
+6,Jun,Magpie-lark,Grallina cyanoleuca,3,13839,223.3
+6,Jun,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,4,11971,193.2
+6,Jun,Noisy Miner,Manorina (Myzantha) melanocephala,5,11805,190.5
+6,Jun,Welcome Swallow,Hirundo (Hirundo) neoxena,6,10697,172.6
+6,Jun,Superb Fairy-wren,Malurus (Malurus) cyaneus,7,9055,146.1
+6,Jun,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,8,8904,143.7
+6,Jun,Galah,Eolophus roseicapilla,9,8767,141.5
+6,Jun,Pacific Black Duck,Anas (Anas) superciliosa,10,8576,138.4
+6,Jun,Australian White Ibis,Threskiornis moluccus,11,8095,130.6
+6,Jun,Red Wattlebird,Anthochaera (Anthochaera) carunculata,12,7781,125.6
+7,Jul,Australian Magpie,Gymnorhina tibicen,1,16485,250.2
+7,Jul,Magpie-lark,Grallina cyanoleuca,2,15011,227.8
+7,Jul,Rainbow Lorikeet,Trichoglossus moluccanus,3,14100,214.0
+7,Jul,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,4,12439,188.8
+7,Jul,Noisy Miner,Manorina (Myzantha) melanocephala,5,11561,175.5
+7,Jul,Welcome Swallow,Hirundo (Hirundo) neoxena,6,10554,160.2
+7,Jul,Galah,Eolophus roseicapilla,7,9842,149.4
+7,Jul,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,8,9816,149.0
+7,Jul,Superb Fairy-wren,Malurus (Malurus) cyaneus,9,9202,139.7
+7,Jul,Pacific Black Duck,Anas (Anas) superciliosa,10,8926,135.5
+7,Jul,Australian White Ibis,Threskiornis moluccus,11,8749,132.8
+7,Jul,Red Wattlebird,Anthochaera (Anthochaera) carunculata,12,7967,120.9
+8,Aug,Australian Magpie,Gymnorhina tibicen,1,16286,222.0
+8,Aug,Magpie-lark,Grallina cyanoleuca,2,15785,215.2
+8,Aug,Rainbow Lorikeet,Trichoglossus moluccanus,3,14943,203.7
+8,Aug,Welcome Swallow,Hirundo (Hirundo) neoxena,4,14346,195.6
+8,Aug,Noisy Miner,Manorina (Myzantha) melanocephala,5,13388,182.5
+8,Aug,Willie Wagtail,Rhipidura (Sauloprocta) leucophrys,6,12513,170.6
+8,Aug,Sulphur-crested Cockatoo,Cacatua (Cacatua) galerita,7,12270,167.3
+8,Aug,Galah,Eolophus roseicapilla,8,11706,159.6
+8,Aug,Superb Fairy-wren,Malurus (Malurus) cyaneus,9,10969,149.5
+8,Aug,Red Wattlebird,Anthochaera (Anthochaera) carunculata,10,10339,141.0
+8,Aug,Pacific Black Duck,Anas (Anas) superciliosa,11,10074,137.3
+8,Aug,Australian White Ibis,Threskiornis moluccus,12,9118,124.3

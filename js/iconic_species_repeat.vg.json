@@ -1,0 +1,295 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "repeat": [
+    "Australian Magpie",
+    "Rainbow Lorikeet",
+    "Superb Fairy-wren",
+    "Galah"
+  ],
+  "columns": 2,
+  "spec": {
+    "width": 500,
+    "height": 429,
+    "projection": {
+      "type": "mercator",
+      "center": [
+        133,
+        -27
+      ],
+      "scale": 528.5714285714286,
+      "translate": [
+        250,
+        228.57142857142858
+      ]
+    },
+    "layer": [
+      {
+        "data": {
+          "url": "data/states.topojson",
+          "format": {
+            "type": "topojson",
+            "feature": "states"
+          }
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "#eef0eb",
+          "stroke": "#91a294",
+          "strokeWidth": 0.6,
+          "tooltip": null
+        }
+      },
+      {
+        "data": {
+          "url": "data/iconic_species_dots_wide_2025.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "longitude": "number",
+              "latitude": "number",
+              "Australian Magpie": "number",
+              "Rainbow Lorikeet": "number",
+              "Superb Fairy-wren": "number",
+              "Galah": "number"
+            }
+          }
+        },
+        "mark": {
+          "type": "circle",
+          "opacity": 1
+        },
+        "encoding": {
+          "longitude": {
+            "field": "longitude",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "latitude",
+            "type": "quantitative"
+          },
+          "size": {
+            "field": {
+              "repeat": "repeat"
+            },
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                38
+              ],
+              "range": [
+                0,
+                16
+              ]
+            },
+            "legend": null
+          },
+          "color": {
+            "field": "species",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Australian Magpie",
+                "Rainbow Lorikeet",
+                "Superb Fairy-wren",
+                "Galah"
+              ],
+              "range": [
+                "#2876ae",
+                "#c17b16",
+                "#67459b",
+                "#9b7900"
+              ]
+            },
+            "legend": null
+          },
+          "tooltip": [
+            {
+              "field": "species",
+              "type": "nominal",
+              "title": "Species"
+            },
+            {
+              "field": "longitude",
+              "type": "quantitative",
+              "title": "Sampled record longitude",
+              "format": ".2f"
+            },
+            {
+              "field": "latitude",
+              "type": "quantitative",
+              "title": "Sampled record latitude",
+              "format": ".2f"
+            }
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "Australian Magpie": "Australian Magpie",
+              "Rainbow Lorikeet": "Rainbow Lorikeet",
+              "Superb Fairy-wren": "Superb Fairy-wren",
+              "Galah": "Galah"
+            }
+          ]
+        },
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "top",
+          "x": 250,
+          "y": 5,
+          "fontSize": 14,
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "text": {
+            "field": {
+              "repeat": "repeat"
+            }
+          },
+          "tooltip": null
+        }
+      },
+      {
+        "name": "location_concentration_finding",
+        "data": {
+          "values": [
+            {
+              "Australian Magpie": "93% of sampled dots\nlie east of 140\u00b0 longitude.",
+              "Rainbow Lorikeet": "98% of sampled dots\nlie east of 140\u00b0 longitude.",
+              "Superb Fairy-wren": "99% of sampled dots\nlie east of 140\u00b0 longitude.",
+              "Galah": "84% of sampled dots\nlie east of 140\u00b0 longitude."
+            }
+          ]
+        },
+        "mark": {
+          "type": "text",
+          "x": 250,
+          "y": 435,
+          "align": "center",
+          "baseline": "top",
+          "fontSize": 12,
+          "fontWeight": 700,
+          "color": "#243b56",
+          "lineBreak": "\n",
+          "lineHeight": 14,
+          "font": "DM Sans"
+        },
+        "encoding": {
+          "text": {
+            "field": {
+              "repeat": "repeat"
+            }
+          },
+          "tooltip": null,
+          "description": {
+            "field": {
+              "repeat": "repeat"
+            },
+            "type": "nominal"
+          }
+        }
+      },
+      {
+        "name": "longitude_reference",
+        "data": {
+          "values": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                  [
+                    140,
+                    -43
+                  ],
+                  [
+                    140,
+                    -11
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "mark": {
+          "type": "geoshape",
+          "filled": false,
+          "stroke": "#7a8790",
+          "strokeWidth": 0.8,
+          "strokeDash": [
+            3,
+            3
+          ],
+          "tooltip": null
+        }
+      },
+      {
+        "name": "longitude_reference_label",
+        "mark": {
+          "type": "text",
+          "fontSize": 10,
+          "fontWeight": 400,
+          "color": "#243b56",
+          "lineBreak": "\n",
+          "lineHeight": 13,
+          "align": "center",
+          "baseline": "bottom",
+          "dy": -3
+        },
+        "encoding": {
+          "text": {
+            "field": "meridian_label",
+            "type": "nominal"
+          },
+          "description": {
+            "field": "meridian_label",
+            "type": "nominal"
+          },
+          "tooltip": null,
+          "longitude": {
+            "datum": 140
+          },
+          "latitude": {
+            "datum": -11
+          }
+        },
+        "data": {
+          "values": [
+            {
+              "meridian_label": "140\u00b0 east"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "concat": {
+      "spacing": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  }
+}

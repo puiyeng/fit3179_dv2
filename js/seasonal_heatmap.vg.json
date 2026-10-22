@@ -1,0 +1,241 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Monthly sighting rates for 12 frequently recorded bird species, January\u2013August 2025, the available months in this Atlas of Living Australia search.",
+  "data": {
+    "url": "data/top_species_month_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank": "number",
+        "month": "number",
+        "sightings": "number",
+        "month_total_records": "number",
+        "sightings_per_10000": "number"
+      }
+    }
+  },
+  "width": "container",
+  "height": {
+    "step": 34
+  },
+  "encoding": {
+    "x": {
+      "field": "month_full",
+      "type": "ordinal",
+      "sort": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August"
+      ],
+      "axis": {
+        "title": "Month in 2025",
+        "labelAngle": {
+          "expr": "width < 500 ? -65 : 0"
+        },
+        "labelFontSize": 12,
+        "ticks": false,
+        "domain": false,
+        "labelAlign": {
+          "expr": "width < 500 ? 'right' : 'center'"
+        },
+        "labelPadding": 6,
+        "labelLimit": 120,
+        "labelOverlap": false,
+        "labelBaseline": {
+          "expr": "width < 500 ? 'middle' : 'top'"
+        }
+      }
+    },
+    "y": {
+      "field": "common_name",
+      "type": "nominal",
+      "sort": [
+        "Australian Magpie",
+        "Magpie-lark",
+        "Rainbow Lorikeet",
+        "Welcome Swallow",
+        "Noisy Miner",
+        "Willie Wagtail",
+        "Superb Fairy-wren",
+        "Sulphur-crested Cockatoo",
+        "Pacific Black Duck",
+        "Galah",
+        "Australian White Ibis",
+        "Red Wattlebird"
+      ],
+      "axis": {
+        "title": null,
+        "labelLimit": 210,
+        "labelFontSize": 12,
+        "ticks": false,
+        "domain": false,
+        "labelColor": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? '#374151' : '#66758a'"
+        },
+        "labelFontWeight": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? 700 : 400"
+        }
+      }
+    },
+    "color": {
+      "field": "sightings_per_10000",
+      "type": "quantitative",
+      "title": "Records per 10,000",
+      "scale": {
+        "domain": [
+          0,
+          150,
+          300
+        ],
+        "range": [
+          "#eef7f7",
+          "#8cc9cc",
+          "#165b64"
+        ],
+        "clamp": true
+      },
+      "legend": {
+        "gradientLength": 240,
+        "titleLimit": 300,
+        "orient": "bottom",
+        "direction": "horizontal",
+        "values": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "gradientOpacity": 1,
+        "title": "Monthly records per 10,000 records"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "field": "scientific_name",
+        "type": "nominal",
+        "title": "Scientific name"
+      },
+      {
+        "field": "month_full",
+        "type": "nominal",
+        "title": "Month"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ",.0f"
+      },
+      {
+        "field": "sightings_per_10000",
+        "type": "quantitative",
+        "title": "Per 10,000 records",
+        "format": ".1f"
+      },
+      {
+        "field": "month_total_records",
+        "type": "quantitative",
+        "title": "All records that month",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "transform": [
+    {
+      "calculate": "[\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\"][datum.month - 1]",
+      "as": "month_full"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": null,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "monthly_peak_cell",
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "align": "center",
+        "baseline": "middle",
+        "font": "DM Sans",
+        "dy": -7
+      },
+      "encoding": {
+        "text": {
+          "field": "peak_cell_label",
+          "type": "nominal"
+        },
+        "description": {
+          "field": "peak_cell_label",
+          "type": "nominal"
+        },
+        "tooltip": null,
+        "x": {
+          "field": "month_full",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "common_name",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "white"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.common_name == 'Australian Magpie' && datum.month == 3"
+        },
+        {
+          "calculate": "'Peak\\n' + format(datum.sightings_per_10000, '.1f')",
+          "as": "peak_cell_label"
+        }
+      ]
+    }
+  ]
+}

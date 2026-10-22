@@ -1,0 +1,276 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "data/top_species_2025.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rank": "number",
+        "sightings": "number"
+      }
+    }
+  },
+  "width": "container",
+  "height": {
+    "step": 35
+  },
+  "encoding": {
+    "y": {
+      "field": "common_name",
+      "type": "nominal",
+      "sort": [
+        "Australian Magpie",
+        "Magpie-lark",
+        "Rainbow Lorikeet",
+        "Welcome Swallow",
+        "Noisy Miner",
+        "Willie Wagtail",
+        "Superb Fairy-wren",
+        "Sulphur-crested Cockatoo",
+        "Pacific Black Duck",
+        "Galah",
+        "Australian White Ibis",
+        "Red Wattlebird"
+      ],
+      "axis": {
+        "title": null,
+        "labelLimit": 210,
+        "labelFontSize": 12,
+        "ticks": false,
+        "domain": false,
+        "labelColor": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? '#374151' : '#66758a'"
+        },
+        "labelFontWeight": {
+          "expr": "indexof([\"Australian Magpie\", \"Rainbow Lorikeet\", \"Superb Fairy-wren\", \"Galah\"], datum.label) >= 0 ? 700 : 400"
+        }
+      }
+    },
+    "x": {
+      "field": "sightings",
+      "type": "quantitative",
+      "title": "January\u2013August 2025 observation records",
+      "scale": {
+        "domain": [
+          0,
+          150000
+        ]
+      },
+      "axis": {
+        "format": ",.0f",
+        "tickCount": 5,
+        "gridColor": "#e4e9ef"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "rank",
+        "type": "ordinal",
+        "title": "Rank"
+      },
+      {
+        "field": "common_name",
+        "type": "nominal",
+        "title": "Common name"
+      },
+      {
+        "field": "scientific_name",
+        "type": "nominal",
+        "title": "Scientific name"
+      },
+      {
+        "field": "sightings",
+        "type": "quantitative",
+        "title": "Observation records",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#a6bfd2",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        },
+        "x2": {
+          "field": "sightings"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 105,
+        "stroke": "white",
+        "strokeWidth": 1,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "common_name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Australian Magpie",
+              "Magpie-lark",
+              "Rainbow Lorikeet",
+              "Welcome Swallow",
+              "Noisy Miner",
+              "Willie Wagtail",
+              "Superb Fairy-wren",
+              "Sulphur-crested Cockatoo",
+              "Pacific Black Duck",
+              "Galah",
+              "Australian White Ibis",
+              "Red Wattlebird"
+            ],
+            "range": [
+              "#2876ae",
+              "#bdc7d1",
+              "#c17b16",
+              "#bdc7d1",
+              "#bdc7d1",
+              "#bdc7d1",
+              "#67459b",
+              "#bdc7d1",
+              "#bdc7d1",
+              "#9b7900",
+              "#bdc7d1",
+              "#bdc7d1"
+            ]
+          },
+          "legend": {
+            "title": "Four focus species",
+            "values": [
+              "Australian Magpie",
+              "Rainbow Lorikeet",
+              "Superb Fairy-wren",
+              "Galah"
+            ],
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+            "symbolType": "circle",
+            "symbolOpacity": 1,
+            "symbolSize": 100,
+            "symbolStrokeWidth": 0
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "fontSize": 12,
+        "color": "#31445b"
+      },
+      "encoding": {
+        "text": {
+          "field": "sightings",
+          "type": "quantitative",
+          "format": ",.0f"
+        },
+        "tooltip": null
+      }
+    },
+    {
+      "name": "ranking_gap_finding",
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#243b56",
+        "align": "right",
+        "baseline": "bottom",
+        "lineBreak": "\n",
+        "lineHeight": 14,
+        "dx": -10,
+        "dy": -26,
+        "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "field": "sightings",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "common_name",
+          "type": "nominal"
+        },
+        "text": {
+          "field": "ranking_gap_finding",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#243b56"
+        },
+        "tooltip": null,
+        "description": {
+          "field": "ranking_gap_finding",
+          "type": "nominal"
+        },
+        "order": null
+      },
+      "transform": [
+        {
+          "filter": {
+            "field": "common_name",
+            "oneOf": [
+              "Australian Magpie",
+              "Magpie-lark"
+            ]
+          }
+        },
+        {
+          "pivot": "common_name",
+          "value": "sightings"
+        },
+        {
+          "calculate": "format(datum['Australian Magpie'] / datum['Magpie-lark'] - 1, '.0%') + ' more records\\nthan Magpie-lark'",
+          "as": "ranking_gap_finding"
+        },
+        {
+          "calculate": "datum['Australian Magpie']",
+          "as": "sightings"
+        },
+        {
+          "calculate": "'Australian Magpie'",
+          "as": "common_name"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent",
+    "font": "DM Sans",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 500,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a",
+      "gridColor": "#e4e9ef"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#46596e",
+      "titleColor": "#27364a"
+    }
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}
