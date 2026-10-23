@@ -413,6 +413,19 @@ footer {
   margin-top: 8px;
 }
 
+/* Related-chart links share one row with equal space between them. */
+.case-links-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 24px;
+  margin-top: 4px;
+}
+
+.case-links-row a {
+  white-space: nowrap;
+}
+
 .case-links a, .source-list a, .ai-acknowledgement a {
   color: #245f8a;
   text-underline-offset: 3px;
@@ -474,6 +487,15 @@ footer p {
 }
 
 @media (max-width: 767px) {
+  .case-links-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-links-row a {
+    white-space: normal;
+  }
+
   .source-list {
     grid-template-columns: 1fr;
   }
