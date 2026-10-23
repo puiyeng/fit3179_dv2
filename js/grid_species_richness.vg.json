@@ -123,6 +123,15 @@
           "filter": "datum.properties.observation_records >= Min_cell_records"
         },
         {
+          "joinaggregate": [
+            {
+              "op": "median",
+              "field": "properties.expected_species_per_500",
+              "as": "median_cell_richness"
+            }
+          ]
+        },
+        {
           "window": [
             {
               "op": "row_number",
@@ -148,7 +157,7 @@
           "as": "label_latitude"
         },
         {
-          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "calculate": "'Highest qualifying cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species per 500 records\\n' + format(datum.properties.expected_species_per_500 - datum.median_cell_richness, '.0f') + ' above the cell median'",
           "as": "peak_cell_finding"
         }
       ],
@@ -185,6 +194,15 @@
           "filter": "datum.properties.observation_records >= Min_cell_records"
         },
         {
+          "joinaggregate": [
+            {
+              "op": "median",
+              "field": "properties.expected_species_per_500",
+              "as": "median_cell_richness"
+            }
+          ]
+        },
+        {
           "window": [
             {
               "op": "row_number",
@@ -210,7 +228,7 @@
           "as": "label_latitude"
         },
         {
-          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "calculate": "'Highest qualifying cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species per 500 records\\n' + format(datum.properties.expected_species_per_500 - datum.median_cell_richness, '.0f') + ' above the cell median'",
           "as": "peak_cell_finding"
         },
         {
@@ -285,6 +303,15 @@
           "filter": "datum.properties.observation_records >= Min_cell_records"
         },
         {
+          "joinaggregate": [
+            {
+              "op": "median",
+              "field": "properties.expected_species_per_500",
+              "as": "median_cell_richness"
+            }
+          ]
+        },
+        {
           "window": [
             {
               "op": "row_number",
@@ -310,7 +337,29 @@
           "as": "label_latitude"
         },
         {
-          "calculate": "'Peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species'",
+          "lookup": "properties.cell",
+          "from": {
+            "data": {
+              "url": "data/grid_richness_by_state.csv",
+              "format": {
+                "type": "csv"
+              }
+            },
+            "key": "cell",
+            "fields": [
+              "state"
+            ]
+          },
+          "as": [
+            "cell_state"
+          ]
+        },
+        {
+          "calculate": "{'ACT': 'Australian Capital Territory', 'NSW': 'New South Wales', 'NT': 'Northern Territory', 'QLD': 'Queensland', 'SA': 'South Australia', 'TAS': 'Tasmania', 'VIC': 'Victoria', 'WA': 'Western Australia'}[datum.cell_state]",
+          "as": "cell_state_name"
+        },
+        {
+          "calculate": "datum.cell_state_name + ' peak cell\\n' + format(datum.properties.expected_species_per_500, '.1f') + ' species per 500 records\\n' + format(datum.properties.expected_species_per_500 - datum.median_cell_richness, '.0f') + ' above the median of shown cells'",
           "as": "peak_cell_finding"
         },
         {
@@ -371,7 +420,7 @@
     "contains": "padding"
   },
   "padding": {
-    "top": 48,
+    "top": 64,
     "left": 5,
     "right": 5,
     "bottom": 5

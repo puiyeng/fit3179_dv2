@@ -21,7 +21,7 @@
         <h1>Australian Birds</h1>
         <p class="eyebrow">Citizen science sightings across Australia</p>
         <p class="eyebrow">01 - Introduction</p>
-        <p class="lead short-copy"><span class="copy-line">Where do Australians record birds?</span></p>
+        <h2 id="introduction">Where do Australians record birds?</h2>
         <div class="copy-columns intro-copy">
           <p class="short-copy"><span class="copy-line">Bird observations reveal where Australians spend time recording.</span>
             <span class="copy-line">They also show which species observers report.</span></p>
@@ -47,10 +47,11 @@
         <p class="eyebrow">02 - Meet Australian birds</p>
         <h2 id="meet-birds">Records and recorded richness</h2>
         <p class="section-intro short-copy"><span class="copy-line">Compare recording activity across Australian states and territories.</span>
+            <span class="copy-line">Richness means the number of distinct bird species recorded.</span>
             <span class="copy-line">Then compare recorded species richness using equal record counts.</span></p>
         <div class="pure-g chart-row chart-row--maps">
           <article class="pure-u-1 pure-u-xl-1-2 chart-block">
-            <h3>Where are most birds recorded?</h3>
+            <h3>Where are most bird observations recorded?</h3>
             <p class="short-copy"><span class="copy-line">Each circle represents one state or territory.</span>
             <span class="copy-line">Circle area scales with its observation record count.</span>
             <span class="copy-line">Larger circles indicate more submitted records.</span></p>
@@ -72,9 +73,10 @@
             <p class="finding short-copy"><span class="copy-line"><strong>Queensland leads the equal-record comparison.</strong></span>
             <span class="copy-line">About 529 species appear per 100,000 records.</span>
             <span class="copy-line">That exceeds New South Wales by 86.5 species.</span></p>
-            <p class="note short-copy"><span class="copy-line">Colours show means across 200 samples per state.</span>
-            <span class="copy-line">Each sample contains 100,000 records, without replacement.</span>
-            <span class="copy-line">Hover for the 5th–95th percentile range.</span>
+            <p class="note short-copy"><span class="copy-line">Colours show averages across 200 samples per state.</span>
+            <span class="copy-line">Each sample contains 100,000 randomly selected records.</span>
+            <span class="copy-line">Records cannot repeat within the same sample.</span>
+            <span class="copy-line">Hover for the middle 90% of sample results.</span>
             <span class="copy-line">Observer bias remains.</span></p>
           </article>
         </div>
@@ -86,7 +88,7 @@
             <span class="copy-line">Hover for scientific names and exact totals.</span></p>
           <div class="chart" id="species_lollipop" role="img" aria-label="Ranked lollipop chart of the 12 most frequently recorded Australian bird species from January to August 2025"></div>
           <p class="finding short-copy"><span class="copy-line"><strong>Australian Magpie leads the national ranking.</strong></span>
-            <span class="copy-line">Observers submitted 130,451 records.</span></p>
+            <span class="copy-line">Its 130,451 records exceed Magpie-lark by about 12%.</span></p>
           <p class="note short-copy"><span class="copy-line">Counts represent observation records, rather than individual birds.</span>
             <span class="copy-line">Frequently visited places may contribute more records.</span>
             <span class="copy-line">Conspicuous species may be recorded more often.</span></p>
@@ -107,7 +109,7 @@
             <span class="copy-line">Hover for raw counts.</span></p>
           <div class="chart" id="seasonal_heatmap" role="img" aria-label="Monthly heatmap of sightings for the 12 leading Australian bird species from January through August 2025"></div>
           <p class="finding short-copy"><span class="copy-line"><strong>Australian Magpie leads every available month.</strong></span>
-            <span class="copy-line">Its highest recording rate occurs in March.</span></p>
+            <span class="copy-line">Its March rate is about 10% above January.</span></p>
           <p class="note short-copy"><span class="copy-line">Atlas of Living Australia supplies these eBird records.</span>
             <span class="copy-line">Available records cover January–August 2025.</span>
             <span class="copy-line">The source supplied no September–December records.</span>
@@ -128,6 +130,13 @@
               <label for="time_month">Through <output id="time_label" for="time_month">August</output> 2025</label>
               <input type="range" id="time_month" min="1" max="8" step="1" value="8" aria-label="Last month shown in line chart">
             </div>
+            <p class="finding short-copy"><span class="copy-line"><strong>Galah and Superb Fairy-wren show opposite overall changes.</strong></span>
+              <span class="copy-line">January–August: Galah rises 22%; Superb Fairy-wren falls 23%.</span>
+              <span class="copy-line">These compare January and August rates per 10,000 records.</span></p>
+            <p class="note short-copy"><span class="copy-line">The summary compares the full January–August period.</span>
+              <span class="copy-line">Playback and the dropdown change the chart view.</span>
+              <span class="copy-line">The on-chart annotation follows your selection.</span>
+              <span class="copy-line">Recording rates do not directly measure bird populations.</span></p>
           </article>
           <article class="pure-u-1 pure-u-xl-1-2 chart-block">
             <h3>The same four birds: monthly ranks</h3>
@@ -138,6 +147,12 @@
             <span class="copy-line">All eight months remain visible.</span></p>
             <div class="chart" id="species_bump" role="img" aria-label="Bump chart showing monthly ranks among the top 12 for the same four species as the line chart, January to August 2025"></div>
             <div class="chart-filter bump-controls"><strong>Filter this chart</strong><div id="bump_filter"></div></div>
+            <p class="finding short-copy"><span class="copy-line"><strong>In the full comparison, Galah climbs five places.</strong></span>
+              <span class="copy-line">From rank 12 in March to rank 7 in July.</span>
+              <span class="copy-line">Every rank is measured among the 12 overview species.</span></p>
+            <p class="note short-copy"><span class="copy-line">The dropdown changes which species are displayed.</span>
+              <span class="copy-line">Species keep their original ranks when others are hidden.</span>
+              <span class="copy-line">The summary describes Galah’s March–July change.</span></p>
           </article>
         </div>
       </section>
@@ -167,6 +182,8 @@
             <span class="copy-line">Each position comes from one sampled species record.</span>
             <span class="copy-line">Maps use two columns where space permits.</span></p>
           <div class="chart" id="iconic_dotmaps" role="img" aria-label="Repeated dot maps of Australian Magpie, Rainbow Lorikeet, Superb Fairy-wren and Galah observation locations"></div>
+          <p class="finding short-copy"><span class="copy-line"><strong>All four samples concentrate east of 140° longitude.</strong></span>
+            <span class="copy-line">For each species, 84%–99% of sampled dots lie east.</span></p>
           <p class="note short-copy"><span class="copy-line">Dot concentrations show where observations were submitted.</span>
             <span class="copy-line">They do not count individual birds.</span>
             <span class="copy-line">Overlapping dots may hide some observations.</span>
@@ -191,6 +208,8 @@
       <section class="story-section" aria-labelledby="birds-states">
         <p class="eyebrow">05 - Birds across states</p>
         <h2 id="birds-states">Species and local variation</h2>
+        <p class="section-intro short-copy"><span class="copy-line">Compare four birds’ recording rates across states and territories.</span>
+          <span class="copy-line">Then compare richness across qualifying cells within each state.</span></p>
         <article class="chart-block">
           <h3>The same four birds: state recording rates</h3>
           <p class="short-copy"><span class="copy-line">Compare the same four birds across states and territories.</span>
@@ -211,24 +230,29 @@
             <span class="copy-line">The dark line marks the median, or middle value.</span>
             <span class="copy-line">Capped whiskers mark the minimum and maximum richness.</span></p>
           <div class="chart" id="grid_richness_boxplot" role="img" aria-label="Box plots and grid-cell dots comparing recorded bird richness across Australian states and territories"></div>
-          <p class="note short-copy"><span class="copy-line">Victoria’s median exceeds Tasmania’s by about 30 species.</span>
-            <span class="copy-line">Richness includes every species recorded within each cell.</span>
+          <p class="finding short-copy"><span class="copy-line"><strong>Victoria has the highest median recorded cell richness.</strong></span>
+            <span class="copy-line">Its median is about 115 species per 500 records.</span>
+            <span class="copy-line">That exceeds Tasmania’s median by about 30 species.</span></p>
+          <p class="note short-copy"><span class="copy-line">Richness compares expected species counts within 500 records.</span>
+            <span class="copy-line">It includes all recorded species, beyond our four focus birds.</span>
             <span class="copy-line">Australian Capital Territory has only two qualifying grid cells.</span>
             <span class="copy-line">These appear as dots without a box plot.</span></p>
         </article>
       </section>
       <section class="story-section" aria-labelledby="bigger-picture">
         <p class="eyebrow">06 - The bigger picture</p>
-        <h2 id="bigger-picture">Does observation effort affect recorded richness?</h2>
+        <h2 id="bigger-picture">How does recording effort relate to recorded richness?</h2>
+        <p class="section-intro short-copy"><span class="copy-line">Do states with more records always show greater richness?</span>
+          <span class="copy-line">Compare all eight states and territories, then inspect one.</span></p>
         <article class="chart-block">
           <h3>Recording effort and recorded species</h3>
           <p class="short-copy"><span class="copy-line">Each dot represents one state or territory.</span>
               <span class="copy-line">The horizontal axis shows observation records.</span>
-              <span class="copy-line">The vertical axis shows distinct recorded species.</span></p>
+              <span class="copy-line">The vertical axis shows distinct recorded species.</span>
+              <span class="copy-line">Some states have almost identical plotted values.</span>
+              <span class="copy-line">Select a state to inspect its point.</span></p>
           <div class="chart-filter"><strong>Inspect a state</strong><div id="state_scatter_filter"></div></div>
           <div class="chart" id="effort_richness" role="img" aria-label="Scatter plot of observation records and recorded bird species across eight Australian states and territories"></div>
-          <p class="note short-copy"><span class="copy-line">Some states have almost identical plotted values.</span>
-              <span class="copy-line">Select a state to inspect its point.</span></p>
           <p class="finding short-copy"><span class="copy-line"><strong>Northern Territory records 115 more species than Tasmania.</strong></span>
               <span class="copy-line">Northern Territory: 348 species from approximately 181,000 records.</span>
               <span class="copy-line">Tasmania: 233 species from approximately 202,000 records.</span></p>
@@ -292,6 +316,8 @@
             <span class="note copy-line">eBird Australia observations, January–August 2025.</span></li>
           <li><a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-4-july-2026-june-2031/access-and-downloads/digital-boundary-files">Australian Bureau of Statistics – State Boundaries (2026)</a>
             <span class="note copy-line">2026 digital boundaries, simplified for these maps.</span></li>
+          <li><a href="https://fonts.google.com/">Google Fonts – Typography</a>
+            <span class="note copy-line">Fraunces headings; DM Sans body and chart text.</span></li>
         </ul>
         <h2 id="ai-acknowledgement">AI Acknowledgement</h2>
         <div class="copy-columns ai-acknowledgement">

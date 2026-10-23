@@ -40,6 +40,7 @@ h1 {
   font-weight: 700;
 }
 
+/* Every section heading, including the introduction, shares this style. */
 h2 {
   font-size: 34px;
   font-family: 'Fraunces', Georgia, serif;
@@ -89,13 +90,6 @@ h3 {
   font-weight: bold;
   line-height: 1.5;
   letter-spacing: 0.13em;
-}
-
-.lead {
-  max-width: 780px;
-  font-size: 27px;
-  line-height: 1.4;
-  margin: 0 0 24px;
 }
 
 /* Authored text lines contain at most ten words. */
@@ -489,11 +483,6 @@ footer p {
 
   h3 {
     font-size: 20px;
-  }
-
-  .lead {
-    font-size: 22px;
-    margin-bottom: 36px;
   }
 
   .story-section {

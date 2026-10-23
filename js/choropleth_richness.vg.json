@@ -112,13 +112,13 @@
           {
             "field": "p05_richness_100k",
             "type": "quantitative",
-            "title": "5th percentile",
+            "title": "Lower end of sample range (5th percentile)",
             "format": ".1f"
           },
           {
             "field": "p95_richness_100k",
             "type": "quantitative",
-            "title": "95th percentile",
+            "title": "Upper end of sample range (95th percentile)",
             "format": ".1f"
           },
           {

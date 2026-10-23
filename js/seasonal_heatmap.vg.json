@@ -229,10 +229,26 @@
       },
       "transform": [
         {
+          "calculate": "datum.month == 1 ? datum.sightings_per_10000 : null",
+          "as": "january_rate"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "january_rate",
+              "as": "january_species_rate"
+            }
+          ],
+          "groupby": [
+            "common_name"
+          ]
+        },
+        {
           "filter": "datum.common_name == 'Australian Magpie' && datum.month == 3"
         },
         {
-          "calculate": "'Peak\\n' + format(datum.sightings_per_10000, '.1f')",
+          "calculate": "format((datum.sightings_per_10000 / datum.january_species_rate - 1) * 100, '.0f') + '% above\\nJanuary'",
           "as": "peak_cell_label"
         }
       ]
