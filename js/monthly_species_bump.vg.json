@@ -96,7 +96,7 @@
     "color": {
       "field": "common_name",
       "type": "nominal",
-      "title": "Selected species",
+      "title": "Species",
       "scale": {
         "domain": [
           "Australian Magpie",
@@ -115,7 +115,7 @@
         "orient": "bottom",
         "direction": "horizontal",
         "columns": 2,
-        "title": null,
+        "title": "Four focus species",
         "labelFontSize": 12,
         "symbolSize": 100,
         "symbolOpacity": 1,
@@ -147,13 +147,13 @@
       {
         "field": "sightings",
         "type": "quantitative",
-        "title": "Observation records",
+        "title": "Species records",
         "format": ",.0f"
       },
       {
         "field": "sightings_per_10000",
         "type": "quantitative",
-        "title": "Per 10,000 records",
+        "title": "Species records per 10,000 monthly records",
         "format": ".1f"
       }
     ]

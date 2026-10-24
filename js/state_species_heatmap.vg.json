@@ -313,7 +313,10 @@
     "color": {
       "field": "per_1000",
       "type": "quantitative",
-      "title": "Records per 1,000",
+      "title": [
+        "Species records per 1,000",
+        "state observation records"
+      ],
       "scale": {
         "domain": [
           0,
@@ -339,7 +342,11 @@
           45
         ],
         "gradientOpacity": 1,
-        "title": "State records per 1,000 records"
+        "title": [
+          "Species records per 1,000",
+          "state observation records"
+        ],
+        "titleLineHeight": 14
       }
     },
     "tooltip": [
@@ -356,7 +363,7 @@
       {
         "field": "per_1000",
         "type": "quantitative",
-        "title": "Per 1,000 records",
+        "title": "Species records per 1,000 state records",
         "format": ".2f"
       },
       {
@@ -368,7 +375,7 @@
       {
         "field": "state_records",
         "type": "quantitative",
-        "title": "All state records",
+        "title": "State observation records",
         "format": ",.0f"
       }
     ]

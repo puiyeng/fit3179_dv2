@@ -74,7 +74,7 @@
         "color": {
           "field": "mean_richness_100k",
           "type": "quantitative",
-          "title": "Species per 100,000 records",
+          "title": "Mean species in 100,000 records",
           "scale": {
             "domain": [
               220,
@@ -91,7 +91,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 190,
-            "title": "Species per 100,000 records",
+            "title": "Mean species in 100,000 records",
             "labelFontSize": 12,
             "titleLimit": 400,
             "gradientOpacity": 1
@@ -101,7 +101,7 @@
           {
             "field": "state",
             "type": "nominal",
-            "title": "State"
+            "title": "State or territory"
           },
           {
             "field": "mean_richness_100k",
@@ -124,13 +124,13 @@
           {
             "field": "total_records",
             "type": "quantitative",
-            "title": "All state records",
+            "title": "State observation records",
             "format": ",.0f"
           },
           {
             "field": "raw_recorded_richness",
             "type": "quantitative",
-            "title": "Species in all records",
+            "title": "Distinct recorded species",
             "format": ",.0f"
           }
         ]

@@ -97,7 +97,7 @@
           {
             "field": "cell",
             "type": "nominal",
-            "title": "1\u00b0 grid cell"
+            "title": "1° grid cell"
           },
           {
             "field": "expected_species_per_500",
@@ -108,7 +108,7 @@
           {
             "field": "raw_species_richness",
             "type": "quantitative",
-            "title": "Species in all cell records",
+            "title": "Distinct species in all cell records",
             "format": ",.0f"
           },
           {
@@ -735,7 +735,7 @@
           "as": "note_height"
         },
         {
-          "calculate": "'Victoria\u2019s median\\n' + format(datum.Victoria - datum.Tasmania, '.0f') + ' species higher\\nthan Tasmania\u2019s'",
+          "calculate": "'Victoria’s median\\n' + format(datum.Victoria - datum.Tasmania, '.0f') + ' species higher\\nthan Tasmania’s'",
           "as": "median_finding"
         }
       ]

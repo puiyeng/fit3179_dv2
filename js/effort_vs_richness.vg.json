@@ -86,7 +86,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -163,7 +163,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -221,7 +221,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -279,7 +279,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -337,7 +337,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -395,7 +395,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -453,7 +453,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -511,7 +511,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -569,7 +569,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -611,7 +611,7 @@
         "y": {
           "field": "raw_recorded_richness",
           "type": "quantitative",
-          "title": "Species recorded",
+          "title": "Recorded species",
           "scale": {
             "domain": [
               180,
@@ -704,7 +704,7 @@
           "Western Australia"
         ],
         "labels": [
-          "Show all states",
+          "Show all states and territories",
           "Australian Capital Territory",
           "New South Wales",
           "Northern Territory",
@@ -714,7 +714,7 @@
           "Victoria",
           "Western Australia"
         ],
-        "name": "State: "
+        "name": "State or territory: "
       }
     }
   ]

@@ -65,7 +65,7 @@
           {
             "field": "properties.cell",
             "type": "nominal",
-            "title": "1\u00b0 cell (longitude, latitude)"
+            "title": "1° grid cell (longitude, latitude)"
           },
           {
             "field": "properties.expected_species_per_500",
@@ -76,7 +76,7 @@
           {
             "field": "properties.raw_species_richness",
             "type": "quantitative",
-            "title": "Species in all cell records",
+            "title": "Distinct species in all cell records",
             "format": ",.0f"
           },
           {

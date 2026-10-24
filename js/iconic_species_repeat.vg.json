@@ -158,10 +158,10 @@
         "data": {
           "values": [
             {
-              "Australian Magpie": "93% of sampled dots\nlie east of 140\u00b0 longitude.",
-              "Rainbow Lorikeet": "98% of sampled dots\nlie east of 140\u00b0 longitude.",
-              "Superb Fairy-wren": "99% of sampled dots\nlie east of 140\u00b0 longitude.",
-              "Galah": "84% of sampled dots\nlie east of 140\u00b0 longitude."
+              "Australian Magpie": "93% of sampled dots\nlie east of 140° longitude.",
+              "Rainbow Lorikeet": "98% of sampled dots\nlie east of 140° longitude.",
+              "Superb Fairy-wren": "99% of sampled dots\nlie east of 140° longitude.",
+              "Galah": "84% of sampled dots\nlie east of 140° longitude."
             }
           ]
         },
@@ -231,11 +231,11 @@
         "name": "longitude_reference_label",
         "mark": {
           "type": "text",
-          "fontSize": 10,
+          "fontSize": 12,
           "fontWeight": 400,
           "color": "#243b56",
           "lineBreak": "\n",
-          "lineHeight": 13,
+          "lineHeight": 14,
           "align": "center",
           "baseline": "bottom",
           "dy": -3
@@ -260,7 +260,7 @@
         "data": {
           "values": [
             {
-              "meridian_label": "140\u00b0 east"
+              "meridian_label": "140° east"
             }
           ]
         }

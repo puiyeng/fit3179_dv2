@@ -191,6 +191,11 @@ h3 {
   margin: 0 0 20px;
 }
 
+/* The final paragraph ends at the same card padding everywhere. */
+.chart-block > p:last-child {
+  margin-bottom: 0;
+}
+
 /* Flex wrapping follows the Week 5 example; Pure sets the widths. */
 .chart-row {
   display: flex;
@@ -292,8 +297,10 @@ h3 {
 
 .chart-filter .vega-bind {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
 }
 
 .chart-filter span {
@@ -341,6 +348,7 @@ h3 {
 }
 
 .vega-bindings select {
+  max-width: 100%;
   font: inherit;
   padding: 5px 9px;
   border: 1px solid #b4c2c5;
@@ -351,6 +359,20 @@ h3 {
 .vega-bindings input[type="range"] {
   vertical-align: middle;
   accent-color: #2876ae;
+}
+
+/* Controls and hover details use the chart text typeface. */
+.chart-filter,
+.time-controls,
+.vega-bindings,
+#vg-tooltip-element.vg-tooltip {
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+#vg-tooltip-element.vg-tooltip {
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: calc(100vw - 24px);
 }
 
 footer {
@@ -436,10 +458,16 @@ footer {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px 32px;
   max-width: none;
-  margin: 0 0 32px;
+  margin: 0;
   padding: 0;
   list-style: none;
   line-height: 1.65;
+}
+
+/* Equal gaps between Sources, AI acknowledgement and Authorship. */
+#ai-acknowledgement,
+#authorship {
+  margin-top: 32px;
 }
 
 .source-list li {

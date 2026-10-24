@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Monthly sighting rates for 12 frequently recorded bird species, January\u2013August 2025, the available months in this Atlas of Living Australia search.",
+  "description": "Monthly recording rates for 12 frequently recorded bird species, January–August 2025, the available months in the Atlas of Living Australia extract.",
   "data": {
     "url": "data/top_species_month_2025.csv",
     "format": {
@@ -85,7 +85,10 @@
     "color": {
       "field": "sightings_per_10000",
       "type": "quantitative",
-      "title": "Records per 10,000",
+      "title": [
+        "Species records per 10,000",
+        "monthly observation records"
+      ],
       "scale": {
         "domain": [
           0,
@@ -112,7 +115,11 @@
           300
         ],
         "gradientOpacity": 1,
-        "title": "Monthly records per 10,000 records"
+        "title": [
+          "Species records per 10,000",
+          "monthly observation records"
+        ],
+        "titleLineHeight": 14
       }
     },
     "tooltip": [
@@ -134,19 +141,19 @@
       {
         "field": "sightings",
         "type": "quantitative",
-        "title": "Observation records",
+        "title": "Species records",
         "format": ",.0f"
       },
       {
         "field": "sightings_per_10000",
         "type": "quantitative",
-        "title": "Per 10,000 records",
+        "title": "Species records per 10,000 monthly records",
         "format": ".1f"
       },
       {
         "field": "month_total_records",
         "type": "quantitative",
-        "title": "All records that month",
+        "title": "Monthly observation records",
         "format": ",.0f"
       }
     ]

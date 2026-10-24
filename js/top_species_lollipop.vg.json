@@ -49,7 +49,7 @@
     "x": {
       "field": "sightings",
       "type": "quantitative",
-      "title": "January\u2013August 2025 observation records",
+      "title": "January–August 2025 observation records",
       "scale": {
         "domain": [
           0,
@@ -71,7 +71,7 @@
       {
         "field": "common_name",
         "type": "nominal",
-        "title": "Common name"
+        "title": "Species"
       },
       {
         "field": "scientific_name",

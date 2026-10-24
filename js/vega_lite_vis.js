@@ -106,7 +106,7 @@ embedChart("#species_lines", vg_5, {bind: "#species_filter"}).then(function(resu
       timer = null;
     }
     playButton.textContent = "Play";
-    playButton.setAttribute("aria-label", "Play monthly sightings");
+    playButton.setAttribute("aria-label", "Play monthly recording rates");
   }
 
   monthSlider.addEventListener("input", function() {
@@ -122,7 +122,7 @@ embedChart("#species_lines", vg_5, {bind: "#species_filter"}).then(function(resu
     var next = Number(monthSlider.value) >= 8 ? 1 : Number(monthSlider.value) + 1;
     showMonth(next);
     playButton.textContent = "Pause";
-    playButton.setAttribute("aria-label", "Pause monthly sightings");
+    playButton.setAttribute("aria-label", "Pause monthly recording rates");
     timer = setInterval(function() {
       if (Number(monthSlider.value) >= 8) {
         stopPlayback();
